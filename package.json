@@ -1,9 +1,9 @@
 {
     "scripts": {
-        "dev": "env-cmd .env cross-env NODE_ENV=development nodemon server/index.ts",
+        "dev": "nodemon server/index.ts",
         "build": "next build && tsc --project tsconfig.server.json",
-        "lambda": "env-cmd .env cross-env EXECUTION_ENV=lambda serverless offline start",
-        "deploy": "env-cmd .env cross-env EXECUTION_ENV=lambda serverless deploy"
+        "lambda": "serverless offline start",
+        "deploy": "serverless deploy"
     },
     "dependencies": {
         "next": "^8.0.1",
@@ -13,23 +13,14 @@
     "devDependencies": {
         "@types/next": "^8.0.1",
         "@types/react": "^16.8.3",
-        "@zeit/next-css": "^1.0.1",
-        "@zeit/next-mdx": "^1.2.0",
         "@zeit/next-typescript": "^1.1.1",
         "compression": "^1.7.3",
-        "cross-env": "^5.2.0",
-        "dotenv": "^6.2.0",
-        "env-cmd": "^8.0.2",
         "express": "^4.16.4",
-        "next-compose-plugins": "^2.1.1",
         "nodemon": "^1.18.10",
         "path-match": "^1.2.4",
         "serverless-apigw-binary": "^0.4.4",
         "serverless-http": "^1.9.0",
         "serverless-offline": "^4.4.0",
-        "serverless-sentry": "^1.2.0",
-        "serverless-stage-manager": "^1.0.5",
-        "sw-precache-webpack-plugin": "^0.11.5",
         "ts-node": "^8.0.2",
         "typescript": "^3.3.3",
         "url": "^0.11.0"

@@ -12,12 +12,9 @@ app.use(compression());
 const route = pathMatch();
 const matches = [];
 
-// for local development (serverless offline)
-if (!isProduction) {
-  // host the static files
-  app.use("/_next/static", express.static("./static"));
-  app.use("/static", express.static("./static"));
-}
+// host the static files
+app.use("/_next/static", express.static("../static"));
+app.use("/static", express.static("../static"));
 
 app.get('/', require('./serverless/pages/index').render)
 app.get('*', (req, res) => {
