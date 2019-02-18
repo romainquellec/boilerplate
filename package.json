@@ -18,6 +18,7 @@
         "compression": "^1.7.3",
         "express": "^4.16.4",
         "nodemon": "^1.18.10",
+        "path": "^0.12.7",
         "path-match": "^1.2.4",
         "serverless-apigw-binary": "^0.4.4",
         "serverless-offline": "^4.4.0",

@@ -2,6 +2,7 @@ const compression = require("compression");
 const express = require("express");
 const { parse } = require("url");
 const pathMatch = require("path-match");
+const path = require('path');
 const awsServerlessExpress = require('aws-serverless-express');
 
 // setup Express and hook up Next.js handler
@@ -13,7 +14,7 @@ const matches = [];
 const binaryMimeTypes = ['*/*'];
 
 // host the static files
-app.use("/_next/static", express.static("./static"));
+app.use("/_next/static", express.static(path.join(__dirname + "/static")));
 
 app.get('/', require('./serverless/pages/index').render)
 app.get('*', (req, res) => {
