@@ -1,9 +1,8 @@
 const compression = require("compression");
 const express = require("express");
 const { parse } = require("url");
-const serverless = require("serverless-http");
 const pathMatch = require("path-match");
-const isProduction = process.env.NODE_ENV === "production";
+const awsServerlessExpress = require('aws-serverless-express');
 
 // setup Express and hook up Next.js handler
 const app = express();
@@ -11,10 +10,10 @@ app.use(compression());
 
 const route = pathMatch();
 const matches = [];
+const binaryMimeTypes = ['*/*'];
 
 // host the static files
-app.use("/_next/static", express.static("../static"));
-app.use("/static", express.static("../static"));
+app.use("/_next/static", express.static("./static"));
 
 app.get('/', require('./serverless/pages/index').render)
 app.get('*', (req, res) => {
@@ -47,5 +46,8 @@ app.get('*', (req, res) => {
 // 404 handler
 app.get("*", require('./serverless/pages/_error').render);
 
+const server = awsServerlessExpress.createServer(app, null, binaryMimeTypes);
+const lambda = (event, context) => awsServerlessExpress.proxy(server, event, context);
+
 // export the wrapped handler for the Lambda runtime
-exports.handler = serverless(app);
+exports.handler = lambda;
