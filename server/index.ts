@@ -1,5 +1,5 @@
 import { createServer } from "http";
-import * as next from "next";
+import next from "next";
 import { parse } from "url";
 
 const port = parseInt(process.env.PORT, 10) || 3000;

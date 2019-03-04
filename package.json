@@ -2,7 +2,7 @@
     "scripts": {
         "dev": "nodemon server/index.ts",
         "build": "next build && tsc --project tsconfig.server.json",
-        "build-lambda": "yarn webpack --mode=production",
+        "build-lambda": "yarn webpack",
         "lambda": "serverless offline start",
         "deploy": "serverless deploy"
     },
