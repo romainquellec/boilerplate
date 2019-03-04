@@ -28,7 +28,7 @@ package:
 functions:
   ssr:
     timeout: 30
-    handler: build/lambda.handler
+    handler: build/lambda_prod.handler
     events:
       - http:
           method: any
