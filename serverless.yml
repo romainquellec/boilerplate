@@ -1,36 +1,22 @@
 service: serverless-ssr
 
 plugins:
+  - serverless-nextjs-plugin
   - serverless-offline
-  - serverless-apigw-binary
 
 frameworkVersion: ">=1.21.0 <2.0.0"
 
 custom:
-  apigwBinary:
-    types:
-      - '*/*'
+  serverless-nextjs:
+    nextConfigDir: ./
+    assetsBucketName: assets.cuistotducoin.com
 
 provider:
   name: aws
   runtime: nodejs8.10
   stage: development
   region: eu-west-1
-  deploymentBucket: 'bucket'
-  endpointType: regional
 
 package:
   exclude:
     - ./**
-  include:
-    - build/**
-
-functions:
-  ssr:
-    timeout: 30
-    handler: build/lambda_prod.handler
-    events:
-      - http:
-          method: any
-          cors: true
-          path: /{proxy+}
